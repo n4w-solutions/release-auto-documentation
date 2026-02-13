@@ -47,13 +47,13 @@ Exemplo simplificado do envio de e-mail:
 - name: Send email with release notes
   uses: dawidd6/action-send-mail@v3
   with:
-    server_address: ${{ secrets.GEN_RELEASE_SMTP_HOST }}
-    server_port: ${{ secrets.GEN_RELEASE_SMTP_PORT }}
-    username: ${{ secrets.GEN_RELEASE_SMTP_USER }}
-    password: ${{ secrets.GEN_RELEASE_SMTP_PASS }}
+    server_address: ${{ env.SMTP_HOST }}
+    server_port: ${{ env.SMTP_PORT }}
+    username: ${{ env.SMTP_USER }}
+    password: ${{ env.SMTP_PASS }}
     subject: "🚀 Release ${{ github.event.release.tag_name }} publicada"
-    to: ${{ vars.GEN_RELEASE_MAIL_TO }}
-    from: GitHub Actions <${{ secrets.GEN_RELEASE_SMTP_USER }}>
+    to: ${{ env.MAIL_TO }}
+    from: GitHub Actions <${{ env.SMTP_USER }}>
     html_body: ${{ steps.html.outputs.result }}
 ```
 
@@ -69,16 +69,17 @@ No repositório, acesse:
 
   Nome                   | Descrição
   -----------------------|---------------
-  GEN_RELEASE_SMTP_HOST  | Servidor SMTP
-  GEN_RELEASE_SMTP_PORT  | Porta SMTP
-  GEN_RELEASE_SMTP_USER  | Usuário SMTP
-  GEN_RELEASE_SMTP_PASS  | Senha SMTP
+  AUTO_RELEASE_SMTP_HOST | Servidor SMTP
+  AUTO_RELEASE_SMTP_PORT | Porta SMTP
+  AUTO_RELEASE_SMTP_USER | Usuário SMTP
+  AUTO_RELEASE_SMTP_PASS | Senha SMTP
 
 ### 🌎 Variables obrigatórias
 
   Nome                  | Descrição
-  ----------------------|--------------------------------
-  GEN_RELEASE_MAIL_TO   | Lista de e-mails destinatários
+  ----------------------|------------------------------------------------
+  AUTO_RELEASE_MAIL_TO  | Lista de e-mails destinatários
+  ENVIRONMENT           | Ambiente que a aplicação está sendo executada
 
 ------------------------------------------------------------------------
 
