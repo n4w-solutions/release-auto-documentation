@@ -11,7 +11,14 @@ permissions:
 jobs:
   build-release-notes:
     name: Generate Release Notes
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-latest    
+    env:
+      SMTP_HOST: ${{ secrets.AUTO_RELEASE_SMTP_HOST }}
+      SMTP_PORT: ${{ secrets.AUTO_RELEASE_SMTP_PORT }}
+      SMTP_USER: ${{ secrets.AUTO_RELEASE_SMTP_USER }}
+      SMTP_PASS: ${{ secrets.AUTO_RELEASE_SMTP_PASS }}
+      MAIL_TO: ${{ vars.AUTO_RELEASE_MAIL_TO }}
+      ENVIRONMENT: ${{ vars.ENVIRONMENT }}
 
     steps:
       
@@ -21,13 +28,6 @@ jobs:
       
       - name: Validar variáveis obrigatórias
         shell: bash
-        env:
-          SMTP_HOST: ${{ secrets.AUTO_RELEASE_SMTP_HOST }}
-          SMTP_PORT: ${{ secrets.AUTO_RELEASE_SMTP_PORT }}
-          SMTP_USER: ${{ secrets.AUTO_RELEASE_SMTP_USER }}
-          SMTP_PASS: ${{ secrets.AUTO_RELEASE_SMTP_PASS }}
-          MAIL_TO: ${{ vars.AUTO_RELEASE_MAIL_TO }}
-          ENVIRONMENT: ${{ vars.ENVIRONMENT }}
         run: |
           echo "🔎 Validando variáveis obrigatórias..."
 
@@ -240,6 +240,13 @@ jobs:
             </div>`;
 
             return html;
+
+      ########################################################
+      # DEBUG
+      ########################################################
+      
+      - name: Debug MAIL_TO
+        run: echo "MAIL_TO=${{ env.MAIL_TO }}"
 
       ########################################################
       # ENVIA EMAIL
