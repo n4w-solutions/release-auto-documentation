@@ -59,6 +59,49 @@ Exemplo simplificado do envio de e-mail:
 
 ------------------------------------------------------------------------
 
+## 📧 Envio de E-mails com SMTP do Google (App Password)
+
+Para utilizar o SMTP do Google com autenticação segura, é necessário gerar uma **Senha de App (App Password)**.  
+Essa senha substitui sua senha principal e é obrigatória quando a conta possui **Verificação em Duas Etapas (2FA)** ativada.
+
+---
+
+### ✅ Pré-requisitos
+
+Antes de começar, confirme que:
+
+- ✔️ Sua conta Google possui **Verificação em duas etapas (2FA)** ativada
+- ✔️ Você tem acesso ao painel de segurança da conta
+- ✔️ O envio será feito via SMTP autenticado
+
+---
+
+### 🔐 Passo-a-passo para gerar a Senha de App
+
+1. Acesse sua conta Google em  
+   👉 https://myaccount.google.com/
+
+2. No menu lateral, clique em **Segurança**
+
+3. Ative a **Verificação em duas etapas**, caso ainda não esteja ativa
+
+4. Após ativar o 2FA, acesse a opção  
+   👉 **Senhas de app**  
+   Link direto: https://myaccount.google.com/apppasswords
+
+5. Em **Selecionar app**, escolha:
+   - 📧 **E-mail**
+
+6. Em **Selecionar dispositivo**, escolha:
+   - 💻 **Outro (nome personalizado)**  
+   - Informe um nome como: `Sistema Backend`, `API SMTP`, `App Produção`, etc.
+
+7. Clique em **Gerar**
+
+8. O Google exibirá uma senha no formato:
+
+---
+
 ## 🔐 Configuração Necessária
 
 No repositório, acesse:
