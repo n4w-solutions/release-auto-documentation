@@ -186,7 +186,9 @@ jobs:
             |------|-------|
             | 🏷 Tag atual | **${currentTag}** |
             | ⏮ Tag anterior | **${previousTag}** |
-            | 📦 Total de commits | **${items.length}** |;
+            | 📦 Total de commits | **${items.length}** |
+            
+            `;
 
             return body;
 
@@ -245,7 +247,6 @@ jobs:
       - name: Send email with release notes
         uses: dawidd6/action-send-mail@v3
         with:
-
           server_address: ${{ env.SMTP_HOST }}
           server_port: ${{ env.SMTP_PORT }}
           username: ${{ env.SMTP_USER }}
@@ -254,3 +255,4 @@ jobs:
           to: ${{ env.MAIL_TO }}
           from: GitHub Actions <${{ env.SMTP_USER }}>
           html_body: ${{ steps.html.outputs.result }}
+
