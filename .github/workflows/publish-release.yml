@@ -18,6 +18,7 @@ jobs:
       SMTP_USER: ${{ secrets.AUTO_RELEASE_SMTP_USER }}
       SMTP_PASS: ${{ secrets.AUTO_RELEASE_SMTP_PASS }}
       MAIL_TO: ${{ vars.AUTO_RELEASE_MAIL_TO }}
+      SMTP_SECURE: ${{ secrets.AUTO_RELEASE_SMTP_SECURE }}
       ENVIRONMENT: ${{ vars.ENVIRONMENT }}
 
     steps:
@@ -256,7 +257,7 @@ jobs:
         with:
           server_address: ${{ env.SMTP_HOST }}
           server_port: ${{ env.SMTP_PORT }}
-          secure: false
+          secure: ${{ env.SMTP_SECURE }}
           username: ${{ env.SMTP_USER }}
           password: ${{ env.SMTP_PASS }}
           subject: "🚀 Release ${{ github.event.release.tag_name }} publicada"
