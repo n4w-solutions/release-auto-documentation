@@ -17,7 +17,7 @@ jobs:
       SMTP_PORT: ${{ secrets.AUTO_RELEASE_SMTP_PORT }}
       SMTP_USER: ${{ secrets.AUTO_RELEASE_SMTP_USER }}
       SMTP_PASS: ${{ secrets.AUTO_RELEASE_SMTP_PASS }}
-      MAIL_TO: ${{ vars.AUTO_RELEASE_MAIL_TO }}
+      SMTP_MAIL_TO: ${{ secrets.AUTO_RELEASE_SMTP_MAIL_TO }}
       SMTP_SECURE: ${{ secrets.AUTO_RELEASE_SMTP_SECURE }}
       ENVIRONMENT: ${{ vars.ENVIRONMENT }}
 
@@ -247,7 +247,7 @@ jobs:
       ########################################################
       
       - name: Debug MAIL_TO
-        run: echo "MAIL_TO=${{ env.MAIL_TO }}"
+        run: echo "MAIL_TO=${{ env.SMTP_MAIL_TO }}"
 
       ########################################################
       # ENVIA EMAIL
@@ -261,7 +261,7 @@ jobs:
           username: ${{ env.SMTP_USER }}
           password: ${{ env.SMTP_PASS }}
           subject: "🚀 Release ${{ github.event.release.tag_name }} publicada"
-          to: ${{ env.MAIL_TO }}
+          to: ${{ env.SMTP_MAIL_TO }}
           from: GitHub Actions <${{ env.SMTP_USER }}>
           html_body: ${{ steps.html.outputs.result }}
 
